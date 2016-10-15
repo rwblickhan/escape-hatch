@@ -10,3 +10,7 @@ InventoryInterface::InventoryInterface()
 InventoryInterface::~InventoryInterface()
 {
 }
+
+void InventoryInterface::init()
+{
+}

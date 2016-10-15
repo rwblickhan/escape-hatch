@@ -10,3 +10,7 @@ NavigationInterface::NavigationInterface()
 NavigationInterface::~NavigationInterface()
 {
 }
+
+void NavigationInterface::init()
+{
+}
