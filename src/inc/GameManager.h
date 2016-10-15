@@ -1,9 +1,9 @@
 #pragma once
 #include <thread>
 #include <mutex>
-#include "InventoryInterface.h"
-#include "NavigationInterface.h"
-#include "InputHandler.h"
+#include <InventoryInterface.h>
+#include <NavigationInterface.h>
+#include <InputHandler.h>
 
 class GameManager
 {
@@ -17,7 +17,7 @@ class GameManager
 	};
 
 	GameState gameState;
-	static GameManager* m_pinstance;
+	static GameManager* instance;
 	std::mutex m_mutex;
 	InventoryInterface m_inventoryInterface;
 	NavigationInterface m_navigationInterface;
@@ -35,11 +35,11 @@ public:
 
 	static GameManager* Get()
 	{
-		if (!m_pinstance)
+		if (!instance)
 		{
-			m_pinstance = new GameManager();
+			instance = new GameManager();
 		}
-		return m_pinstance;
+		return instance;
 	}
 
 	InventoryInterface* getInventoryInterface()
@@ -54,4 +54,3 @@ public:
 
 	void Process();
 };
-

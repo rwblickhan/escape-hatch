@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <map>
+#include <Item.h>
+
 class Stage
 {
 public:

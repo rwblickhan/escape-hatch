@@ -1,5 +1,4 @@
-#include "GameManager.h"
-
+#include <GameManager.h>
 
 void GameManager::Process()
 {
