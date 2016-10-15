@@ -1,9 +1,9 @@
 #pragma once
 #include <thread>
 #include <mutex>
-#include "InventoryInterface.h"
-#include "NavigationInterface.h"
-#include "InputHandler.h"
+#include <InventoryInterface.h>
+#include <NavigationInterface.h>
+#include <InputHandler.h>
 
 class GameManager
 {

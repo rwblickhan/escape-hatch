@@ -1,10 +1,9 @@
 #include <GameManager.h>
 
-
 int main()
 {
-	GameManager gameManager;
-	while (gameManager.) 
+    GameManager* gameManager = GameManager::Get();
+	while (true) 
 	{
 		
 	}
