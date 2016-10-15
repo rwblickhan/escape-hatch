@@ -4,19 +4,13 @@
 #include <InventoryInterface.h>
 #include <NavigationInterface.h>
 #include <InputHandler.h>
+#include <Types.h>
 
 class GameManager
 {
 	// GameManger Singleton
-	enum GameState
-	{
-		Invalid = -1,
-		Initializing,
-		Running,
-		Closing
-	};
 
-	GameState gameState;
+	static types::GameState gameState;
 	static GameManager* pInstance;
 	std::mutex m_mutex;
 	InventoryInterface m_inventoryInterface;

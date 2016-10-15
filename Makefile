@@ -7,7 +7,8 @@ ALLLIB=\
 	   InventoryInterface.o  \
 	   Item.o				 \
 	   NavigationInterface.o \
-	   Stage.o 
+	   Stage.o 				 \
+	   UiManager.o			 
 
 out: $(ALLLIB)
 	$(CC) $(LFLAGS) -o eh.out src/main.cpp $(ALLLIB)
@@ -29,6 +30,9 @@ NavigationInterface.o: src/NavigationInterface.cpp
 
 Stage.o: src/Stage.cpp
 	$(CC) $(CFLAGS) src/Stage.cpp
+
+UiManager.o: src/UiManager.cpp
+	$(CC) $(CFLAGS) src/UiManager.cpp
 
 clean:
 	rm *.o && rm eh.out
