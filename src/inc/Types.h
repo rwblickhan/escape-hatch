@@ -19,4 +19,10 @@ namespace types
         UI_Closing
     };
 
+    enum Error
+    {
+        Err_Success = 0,
+        Err_Init_Failed
+    };
+
 }

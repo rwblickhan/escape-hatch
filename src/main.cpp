@@ -14,6 +14,7 @@ types::UiState uiState = types::UiState::UI_Invalid;
 int main()
 {
     GameManager* pGameManager = GameManager::Get();
+    UiManager* pUiManager = UiManager::Get();
 	while (true)
 	{
 	    std::cout << "hi" << std::endl;

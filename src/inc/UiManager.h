@@ -16,14 +16,19 @@ public:
 		}
 		return pInstance;
 	}
+
+    types::Error Init();
 private:
-    // UiManager Singleton
-
-	static types::UiState uiState;
-	static UiManager* pInstance;
-
     UiManager();
     ~UiManager();
+
+    //UiManager singleton
+    static types::UiState uiState;
+	static UiManager* pInstance;
+
+    SDL_Window* m_pWin;
+    SDL_Renderer* m_pRen;
+    SDL_Texture* m_pTempTex;
 };
 
 }
