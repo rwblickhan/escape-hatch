@@ -34,7 +34,7 @@ public:
 	std::map<Direction, Stage*>	pstages;  //!< Stages that we are connected to
 	std::map<Locale, Item*>		pitems;	  //!< Items that are interactive
 
-	// Graphics 
+	// Graphics
 
 
 
@@ -42,4 +42,3 @@ public:
 	Stage();
 	~Stage();
 };
-
