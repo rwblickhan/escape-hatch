@@ -3,6 +3,8 @@
 #include <Types.h>
 #include <string>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 using namespace ui;
 
@@ -15,9 +17,7 @@ int main()
 {
     GameManager* pGameManager = GameManager::Get();
     UiManager* pUiManager = UiManager::Get();
-	while (true)
-	{
-	    std::cout << "hi" << std::endl;
-	}
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    pUiManager->Deinit();
 	return -1;
 }

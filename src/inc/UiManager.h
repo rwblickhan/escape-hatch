@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Types.h>
+#include <SDL2/SDL.h>
 
 namespace ui
 {
@@ -18,6 +19,7 @@ public:
 	}
 
     types::Error Init();
+    types::Error Deinit();
 private:
     UiManager();
     ~UiManager();

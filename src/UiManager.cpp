@@ -1,5 +1,4 @@
 #include <UiManager.h>
-#include <SDL/SDL2.h>
 #include <iostream>
 #include <string>
 
@@ -15,7 +14,7 @@ using namespace types;
 UiManager::UiManager()
     : m_pWin(nullptr)
     , m_pRen(nullptr)
-    , m_pIntroDisplay(nullptr)
+    , m_pTempTex(nullptr)
 {
     Init();
 }
@@ -27,7 +26,8 @@ UiManager::~UiManager()
 
 Error UiManager::Init()
 {
-    uiState = UI_Initializing;
+    //TODO: why does this make linking fail
+    //uiState = UI_Initializing;
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
@@ -47,14 +47,17 @@ Error UiManager::Init()
         Deinit();
         return Err_Init_Failed;
     }
-    std::string imgPath = SDL_GetBasePath() + PATH_SEP + "data" + PATH_SEP + "testImg.bmp";
+    std::string imgPath = SDL_GetBasePath();
+    imgPath += "data";
+    imgPath += PATH_SEP;
+    imgPath += "testImg.bmp";
     SDL_Surface* img = SDL_LoadBMP(imgPath.c_str());
     if (img == nullptr) {
         std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
         Deinit();
         return Err_Init_Failed;
     }
-    SDL_Texture m_pTempTex = SDL_CreateTextureFromSurface(m_pRen, img);
+    SDL_Texture* m_pTempTex = SDL_CreateTextureFromSurface(m_pRen, img);
     SDL_FreeSurface(img);
     if (m_pTempTex == nullptr) {
         std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
@@ -64,13 +67,13 @@ Error UiManager::Init()
     SDL_RenderClear(m_pRen);
     SDL_RenderCopy(m_pRen, m_pTempTex, NULL, NULL);
     SDL_RenderPresent(m_pRen);
-    uiState = UI_Running;
+    //uiState = UI_Running;
     return Err_Success;
 }
 
 types::Error UiManager::Deinit()
 {
-    uiState = UI_Closing;
+    //uiState = UI_Closing;
     if (m_pTempTex)
     {
         SDL_DestroyTexture(m_pTempTex);
