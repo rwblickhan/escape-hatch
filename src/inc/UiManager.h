@@ -3,12 +3,16 @@
 #include <Types.h>
 #include <SDL2/SDL.h>
 
+//namespace for ui-related code
 namespace ui
 {
 
+//class that manages UI
 class UiManager
 {
 public:
+
+    //get singleton
     static UiManager* Get()
 	{
 		if (!pInstance)
@@ -18,13 +22,19 @@ public:
 		return pInstance;
 	}
 
-    types::Error Init();
-    types::Error Deinit();
-private:
-    UiManager();
     ~UiManager();
 
-    //UiManager singleton
+    //initialize UI manager
+    types::Error Init();
+
+    //deinitialize UI manager
+    types::Error Deinit();
+
+private:
+
+    //private constructor due to singleton
+    UiManager();
+
     static types::UiState uiState;
 	static UiManager* pInstance;
 
