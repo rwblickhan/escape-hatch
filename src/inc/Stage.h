@@ -37,7 +37,6 @@ public:
 	// Graphics
 
 
-
 public:
 	Stage();
 	~Stage();

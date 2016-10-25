@@ -12,6 +12,7 @@ class GameManager
 
 	static types::GameState gameState;
 	static GameManager* pInstance;
+
 	std::mutex m_mutex;
 	InventoryInterface m_inventoryInterface;
 	NavigationInterface m_navigationInterface;
@@ -25,6 +26,7 @@ public:
 	{
 		m_inventoryInterface.Init();
 		m_navigationInterface.Init();
+
 	}
 
 	static GameManager* Get()

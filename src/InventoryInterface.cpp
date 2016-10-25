@@ -13,4 +13,5 @@ InventoryInterface::~InventoryInterface()
 
 void InventoryInterface::Init()
 {
+    
 }
