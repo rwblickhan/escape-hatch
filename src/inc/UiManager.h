@@ -3,6 +3,8 @@
 #include <Types.h>
 #include <SDL2/SDL.h>
 
+using namespace types;
+
 //namespace for ui-related code
 namespace ui
 {
@@ -25,17 +27,17 @@ public:
     ~UiManager();
 
     //initialize UI manager
-    types::Error Init();
+    Error Init();
 
     //deinitialize UI manager
-    types::Error Deinit();
+    Error Deinit();
 
 private:
 
     //private constructor due to singleton
     UiManager();
 
-    static types::UiState uiState;
+    static UiState uiState;
 	static UiManager* pInstance;
 
     SDL_Window* m_pWin;
