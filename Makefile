@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-std=c++11 -c -Wall -Isrc/inc
-LFLAGS=-std=c++11 -Wall -Isrc/inc -framework SDL2
+CFLAGS=-std=c++11 -c -Wall -Isrc/inc -I/usr/local/include -v
+LFLAGS=-std=c++11 -Wall -Isrc/inc -I/usr/local/include -L/usr/local/lib -lSDL2 -v
 ALLLIB=\
 	   GameManager.o		 \
 	   InputHandler.o		 \
