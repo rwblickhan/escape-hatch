@@ -7,15 +7,13 @@
 #include <chrono>
 
 using namespace ui;
+using namespace types;
 
-GameManager* GameManager::pInstance = nullptr;
-types::GameState gameState = types::GameState::GS_Invalid;
 UiManager* UiManager::pInstance = nullptr;
-types::UiState uiState = types::UiState::UI_Invalid;
+UiState uiState = UiState::UI_Invalid;
 
 int main()
 {
-    GameManager* pGameManager = GameManager::Get();
     UiManager* pUiManager = UiManager::Get();
     std::this_thread::sleep_for(std::chrono::seconds(5));
     pUiManager->Deinit();
