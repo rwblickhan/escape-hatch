@@ -37,7 +37,7 @@ private:
     //private constructor due to singleton
     UiManager();
 
-    static UiState uiState;
+    UiState uiState;
 	static UiManager* pInstance;
 
     SDL_Window* m_pWin;

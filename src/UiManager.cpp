@@ -15,6 +15,7 @@ UiManager::UiManager()
     : m_pWin(nullptr)
     , m_pRen(nullptr)
     , m_pTempTex(nullptr)
+    , uiState(UI_Invalid)
 {
     Init();
 }
@@ -26,14 +27,13 @@ UiManager::~UiManager()
 
 Error UiManager::Init()
 {
-    //TODO: why does this make linking fail
-    //uiState = UI_Initializing;
+    uiState = UI_Initializing;
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
         return Err_Init_Failed;
     }
-    m_pWin = SDL_CreateWindow("Main Window", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+    m_pWin = SDL_CreateWindow("Main Window", 100, 100, 640, 400, SDL_WINDOW_SHOWN);
     if (m_pWin == nullptr)
     {
         std::cout << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
@@ -67,13 +67,13 @@ Error UiManager::Init()
     SDL_RenderClear(m_pRen);
     SDL_RenderCopy(m_pRen, m_pTempTex, NULL, NULL);
     SDL_RenderPresent(m_pRen);
-    //uiState = UI_Running;
+    uiState = UI_Running;
     return Err_Success;
 }
 
 types::Error UiManager::Deinit()
 {
-    //uiState = UI_Closing;
+    uiState = UI_Closing;
     if (m_pTempTex)
     {
         SDL_DestroyTexture(m_pTempTex);
