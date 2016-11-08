@@ -2,6 +2,7 @@
 
 #include <Types.h>
 #include <SDL2/SDL.h>
+#include <string>
 
 using namespace types;
 
@@ -33,6 +34,8 @@ public:
     Error Deinit();
 
 private:
+
+    Error TestDisplayImg(std::string imgPath);
 
     //private constructor due to singleton
     UiManager();

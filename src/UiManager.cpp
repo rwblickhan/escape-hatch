@@ -12,10 +12,10 @@ using namespace types;
 #endif
 
 UiManager::UiManager()
-    : m_pWin(nullptr)
+    : uiState(UI_Invalid)
+    , m_pWin(nullptr)
     , m_pRen(nullptr)
     , m_pTempTex(nullptr)
-    , uiState(UI_Invalid)
 {
     Init();
 }
@@ -51,6 +51,32 @@ Error UiManager::Init()
     imgPath += "data";
     imgPath += PATH_SEP;
     imgPath += "testImg.bmp";
+    TestDisplayImg(imgPath);
+    uiState = UI_Running;
+    return Err_Success;
+}
+
+Error UiManager::Deinit()
+{
+    uiState = UI_Closing;
+    if (m_pTempTex)
+    {
+        SDL_DestroyTexture(m_pTempTex);
+    }
+    if (m_pRen)
+    {
+        SDL_DestroyRenderer(m_pRen);
+    }
+    if (m_pWin)
+    {
+        SDL_DestroyWindow(m_pWin);
+    }
+    SDL_Quit();
+    return Err_Success;
+}
+
+Error UiManager::TestDisplayImg(std::string imgPath)
+{
     SDL_Surface* img = SDL_LoadBMP(imgPath.c_str());
     if (img == nullptr) {
         std::cout << "SDL_LoadBMP Error: " << SDL_GetError() << std::endl;
@@ -67,25 +93,5 @@ Error UiManager::Init()
     SDL_RenderClear(m_pRen);
     SDL_RenderCopy(m_pRen, m_pTempTex, NULL, NULL);
     SDL_RenderPresent(m_pRen);
-    uiState = UI_Running;
-    return Err_Success;
-}
-
-types::Error UiManager::Deinit()
-{
-    uiState = UI_Closing;
-    if (m_pTempTex)
-    {
-        SDL_DestroyTexture(m_pTempTex);
-    }
-    if (m_pRen)
-    {
-        SDL_DestroyRenderer(m_pRen);
-    }
-    if (m_pWin)
-    {
-        SDL_DestroyWindow(m_pWin);
-    }
-    SDL_Quit();
     return Err_Success;
 }
