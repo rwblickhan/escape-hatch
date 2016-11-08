@@ -22,7 +22,8 @@ namespace types
     enum Error
     {
         Err_Success = 0,
-        Err_Init_Failed
+        Err_Init_Failed,
+        Err_Not_Implemented
     };
 
 }

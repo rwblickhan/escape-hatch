@@ -33,6 +33,8 @@ public:
     //deinitialize UI manager
     Error Deinit();
 
+    Error CallbackDisplayImg(std::string imgPath);
+
 private:
 
     Error TestDisplayImg(std::string imgPath);

@@ -75,6 +75,11 @@ Error UiManager::Deinit()
     return Err_Success;
 }
 
+Error CallbackDisplayImg(std::string imgPath)
+{
+    return Err_Not_Implemented;
+}
+
 Error UiManager::TestDisplayImg(std::string imgPath)
 {
     SDL_Surface* img = SDL_LoadBMP(imgPath.c_str());
