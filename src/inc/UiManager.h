@@ -37,6 +37,8 @@ public:
 
 private:
 
+    //for internal/testing use only
+    //for external use refer to CallbackDisplayImg
     Error TestDisplayImg(std::string imgPath);
 
     //private constructor due to singleton
