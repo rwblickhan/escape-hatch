@@ -3,8 +3,13 @@
 #include <Types.h>
 #include <SDL2/SDL.h>
 #include <string>
+#include <map>
 
 using namespace types;
+
+static std::map<Screen, std::string> ScreenToPathMap = {
+    {Screen_Loading, "loading.bmp"}
+};
 
 //namespace for ui-related code
 namespace ui
@@ -28,7 +33,7 @@ public:
     ~UiManager();
 
     //initialize UI manager
-    Error Init();
+    Error Init(Screen initScreen);
 
     //deinitialize UI manager
     Error Deinit();
@@ -37,9 +42,9 @@ public:
 
 private:
 
-    //for internal/testing use only
-    //for external use refer to CallbackDisplayImg
-    Error TestDisplayImg(std::string imgPath);
+    Error DisplayImg(std::string imgPath);
+
+    std::string GetPath(Screen screen);
 
     //private constructor due to singleton
     UiManager();

@@ -17,15 +17,13 @@ UiManager::UiManager()
     , m_pRen(nullptr)
     , m_pTempTex(nullptr)
 {
-    Init();
 }
 
 UiManager::~UiManager()
 {
-    Deinit();
 }
 
-Error UiManager::Init()
+Error UiManager::Init(Screen initScreen)
 {
     uiState = UI_Initializing;
     if (SDL_Init(SDL_INIT_VIDEO))
@@ -47,11 +45,8 @@ Error UiManager::Init()
         Deinit();
         return Err_Init_Failed;
     }
-    std::string imgPath = SDL_GetBasePath();
-    imgPath += "data";
-    imgPath += PATH_SEP;
-    imgPath += "testImg.bmp";
-    TestDisplayImg(imgPath);
+
+    DisplayImg(GetPath(initScreen));
     uiState = UI_Running;
     return Err_Success;
 }
@@ -80,7 +75,16 @@ Error CallbackDisplayImg(std::string imgPath)
     return Err_Not_Implemented;
 }
 
-Error UiManager::TestDisplayImg(std::string imgPath)
+std::string UiManager::GetPath(Screen screen)
+{
+    std::string imgPath = SDL_GetBasePath();
+    imgPath += "data";
+    imgPath += PATH_SEP;
+    imgPath += ScreenToPathMap[screen];
+    return imgPath;
+}
+
+Error UiManager::DisplayImg(std::string imgPath)
 {
     SDL_Surface* img = SDL_LoadBMP(imgPath.c_str());
     if (img == nullptr) {

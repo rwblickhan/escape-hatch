@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 namespace types
 {
 
@@ -24,6 +26,11 @@ namespace types
         Err_Success = 0,
         Err_Init_Failed,
         Err_Not_Implemented
+    };
+
+    enum Screen
+    {
+        Screen_Loading = 0
     };
 
 }
