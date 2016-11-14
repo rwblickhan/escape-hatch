@@ -11,6 +11,7 @@ InventoryInterface::~InventoryInterface()
 {
 }
 
-void InventoryInterface::init()
+void InventoryInterface::Init()
 {
+    
 }

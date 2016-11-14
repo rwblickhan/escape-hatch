@@ -6,11 +6,10 @@ class NavigationInterface
 public:
 	NavigationInterface();
 	~NavigationInterface();
-
-	void init();
+	
+	void Init();
 
 	void MoveTo(Stage::Direction direction);
 
 
 };
-

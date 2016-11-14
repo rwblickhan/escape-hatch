@@ -5,6 +5,5 @@ public:
 	InventoryInterface();
 	~InventoryInterface();
 
-	void init();
+	void Init();
 };
-

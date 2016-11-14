@@ -1,15 +1,21 @@
 #include <GameManager.h>
+#include <UiManager.h>
+#include <Types.h>
 #include <string>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
-GameManager* GameManager::instance = nullptr;
+using namespace ui;
+using namespace types;
+
+UiManager* UiManager::pInstance = nullptr;
+UiState uiState = UiState::UI_Invalid;
 
 int main()
 {
-    GameManager* gameManager = GameManager::Get();
-	while (true) 
-	{
-	    std::cout << "hi" << std::endl;	
-	}
+    UiManager* pUiManager = UiManager::Get();
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    pUiManager->Deinit();
 	return -1;
 }

@@ -4,50 +4,46 @@
 #include <InventoryInterface.h>
 #include <NavigationInterface.h>
 #include <InputHandler.h>
+#include <Types.h>
 
 class GameManager
 {
 	// GameManger Singleton
-	enum GameState
-	{
-		GS_Invalid = -1,
-		GS_Initializing,
-		GS_Running,
-		GS_Closing
-	};
 
-	GameState gameState;
-	static GameManager* instance;
+	static types::GameState gameState;
+	static GameManager* pInstance;
+
 	std::mutex m_mutex;
 	InventoryInterface m_inventoryInterface;
 	NavigationInterface m_navigationInterface;
 	InputHandler m_inputHandler;
-	
+
 	GameManager() {	Clear(); }
 	~GameManager() { Clear(); }
 
 public:
 	void Clear()
 	{
-		m_inventoryInterface.init();
-		m_navigationInterface.init();
+		m_inventoryInterface.Init();
+		m_navigationInterface.Init();
+
 	}
 
 	static GameManager* Get()
 	{
-		if (!instance)
+		if (!pInstance)
 		{
-			instance = new GameManager();
+			pInstance = new GameManager();
 		}
-		return instance;
+		return pInstance;
 	}
 
-	InventoryInterface* getInventoryInterface()
+	InventoryInterface* GetInventoryInterface()
 	{
 		return &m_inventoryInterface;
 	}
 
-	NavigationInterface* getNavigationInterface()
+	NavigationInterface* GetNavigationInterface()
 	{
 		return &m_navigationInterface;
 	}

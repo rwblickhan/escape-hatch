@@ -11,6 +11,6 @@ NavigationInterface::~NavigationInterface()
 {
 }
 
-void NavigationInterface::init()
+void NavigationInterface::Init()
 {
 }

@@ -1,13 +1,14 @@
 CC=g++
-CFLAGS=-std=c++11 -c -Wall -Isrc/inc
-LFLAGS=-std=c++11 -Wall -Isrc/inc
+CFLAGS=-std=c++11 -c -Wall -Isrc/inc -I/usr/local/include -v
+LFLAGS=-std=c++11 -Wall -Isrc/inc -I/usr/local/include -L/usr/local/lib -lSDL2 -v
 ALLLIB=\
 	   GameManager.o		 \
 	   InputHandler.o		 \
 	   InventoryInterface.o  \
 	   Item.o				 \
 	   NavigationInterface.o \
-	   Stage.o 
+	   Stage.o 				 \
+	   UiManager.o			 
 
 out: $(ALLLIB)
 	$(CC) $(LFLAGS) -o eh.out src/main.cpp $(ALLLIB)
@@ -29,6 +30,9 @@ NavigationInterface.o: src/NavigationInterface.cpp
 
 Stage.o: src/Stage.cpp
 	$(CC) $(CFLAGS) src/Stage.cpp
+
+UiManager.o: src/UiManager.cpp
+	$(CC) $(CFLAGS) src/UiManager.cpp
 
 clean:
 	rm *.o && rm eh.out
