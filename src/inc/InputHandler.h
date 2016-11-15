@@ -1,8 +1,12 @@
 #pragma once
-class InputHandler
+
+namespace eh
 {
-	// handle handle
-public:
-	InputHandler();
-	~InputHandler();
-};
+	class InputHandler
+	{
+		// handle handle
+	public:
+		InputHandler();
+		~InputHandler();
+	};
+}

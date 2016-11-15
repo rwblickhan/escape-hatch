@@ -1,15 +1,18 @@
 #pragma once
 #include <Stage.h>
 
-class NavigationInterface
+namespace eh
 {
-public:
-	NavigationInterface();
-	~NavigationInterface();
-	
-	void Init();
+	class NavigationInterface
+	{
+	public:
+		NavigationInterface();
+		~NavigationInterface();
 
-	void MoveTo(Stage::Direction direction);
+		void Init();
+
+		void MoveTo(Stage::Direction direction);
 
 
-};
+	};
+}

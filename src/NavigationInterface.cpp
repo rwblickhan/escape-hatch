@@ -1,6 +1,6 @@
 #include <NavigationInterface.h>
 
-
+using namespace eh;
 
 NavigationInterface::NavigationInterface()
 {

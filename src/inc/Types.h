@@ -1,29 +1,31 @@
 #pragma once
-
-namespace types
+namespace eh
 {
-
-    enum GameState
+    enum struct GameState
     {
-    	GS_Invalid = -1,
-    	GS_Initializing,
-    	GS_Running,
-    	GS_Closing
+        Invalid = -1,
+        Initializing,
+        Running,
+        Closing
     };
 
-    enum UiState
+    enum struct UiState
     {
-        UI_Invalid = -1,
-        UI_Initializing,
-        UI_Running,
-        UI_Closing
+        Invalid = -1,
+        Initializing,
+        Running,
+        Closing
     };
 
-    enum Error
+    enum struct Error
     {
-        Err_Success = 0,
-        Err_Init_Failed,
-        Err_Not_Implemented
+        Success = 0,
+        Init_Failed,
+        Not_Implemented
     };
 
+    enum struct Screen
+    {
+        Loading = 0
+    };
 }

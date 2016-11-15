@@ -3,53 +3,53 @@
 #include <Types.h>
 #include <SDL2/SDL.h>
 #include <string>
+#include <map>
 
-using namespace types;
-
-//namespace for ui-related code
-namespace ui
+namespace eh
 {
+    static std::map<Screen, std::string> ScreenToPathMap = {
+        {Screen::Loading, "loading.bmp"}
+    };
 
-//class that manages UI
-class UiManager
-{
-public:
+    //class that manages UI
+    class UiManager
+    {
+    public:
 
-    //get singleton
-    static UiManager* Get()
-	{
-		if (!pInstance)
-		{
-			pInstance = new UiManager();
-		}
-		return pInstance;
-	}
+        //get singleton
+        static UiManager* Get()
+    	{
+    		if (!pInstance)
+    		{
+    			pInstance = new UiManager();
+    		}
+    		return pInstance;
+    	}
 
-    ~UiManager();
+        ~UiManager();
 
-    //initialize UI manager
-    Error Init();
+        //initialize UI manager
+        Error Init(Screen initScreen);
 
-    //deinitialize UI manager
-    Error Deinit();
+        //deinitialize UI manager
+        Error Deinit();
 
-    Error CallbackDisplayImg(std::string imgPath);
+        Error CallbackDisplayImg(std::string imgPath);
 
-private:
+    private:
 
-    //for internal/testing use only
-    //for external use refer to CallbackDisplayImg
-    Error TestDisplayImg(std::string imgPath);
+        Error DisplayImg(std::string imgPath);
 
-    //private constructor due to singleton
-    UiManager();
+        std::string GetPath(Screen screen);
 
-    UiState uiState;
-	static UiManager* pInstance;
+        //private constructor due to singleton
+        UiManager();
 
-    SDL_Window* m_pWin;
-    SDL_Renderer* m_pRen;
-    SDL_Texture* m_pTempTex;
-};
+        UiState uiState;
+    	static UiManager* pInstance;
 
+        SDL_Window* m_pWin;
+        SDL_Renderer* m_pRen;
+        SDL_Texture* m_pTempTex;
+    };
 }
