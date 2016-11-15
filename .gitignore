@@ -272,3 +272,6 @@ ModelManifest.xml
 *.lastbuildstate
 *.idb
 *.pdb
+
+#CLion artifacts
+*.idea
