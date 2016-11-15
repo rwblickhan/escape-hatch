@@ -6,18 +6,17 @@
 #include <thread>
 #include <chrono>
 
-using namespace ui;
-using namespace types;
+using namespace eh;
 
 UiManager* UiManager::pInstance = nullptr;
-UiState uiState = UiState::UI_Invalid;
+UiState uiState = UiState::Invalid;
 GameManager* GameManager::pInstance = nullptr;
-GameState gameState = GameState::GS_Invalid;
+GameState gameState = GameState::Invalid;
 
 int main()
 {
     UiManager* pUiManager = UiManager::Get();
-    pUiManager->Init(Screen_Loading);
+    pUiManager->Init(Screen::Loading);
     std::this_thread::sleep_for(std::chrono::seconds(5));
     pUiManager->Deinit();
 	return -1;

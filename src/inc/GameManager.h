@@ -6,47 +6,50 @@
 #include <InputHandler.h>
 #include <Types.h>
 
-class GameManager
+namespace eh
 {
-	// GameManger Singleton
-
-	static types::GameState gameState;
-	static GameManager* pInstance;
-
-	std::mutex m_mutex;
-	InventoryInterface m_inventoryInterface;
-	NavigationInterface m_navigationInterface;
-	InputHandler m_inputHandler;
-
-	GameManager() {	Clear(); }
-	~GameManager() { Clear(); }
-
-public:
-	void Clear()
+	class GameManager
 	{
-		m_inventoryInterface.Init();
-		m_navigationInterface.Init();
+		// GameManger Singleton
 
-	}
+		static GameState gameState;
+		static GameManager* pInstance;
 
-	static GameManager* Get()
-	{
-		if (!pInstance)
+		std::mutex m_mutex;
+		InventoryInterface m_inventoryInterface;
+		NavigationInterface m_navigationInterface;
+		InputHandler m_inputHandler;
+
+		GameManager() {	Clear(); }
+		~GameManager() { Clear(); }
+
+	public:
+		void Clear()
 		{
-			pInstance = new GameManager();
+			m_inventoryInterface.Init();
+			m_navigationInterface.Init();
+
 		}
-		return pInstance;
-	}
 
-	InventoryInterface* GetInventoryInterface()
-	{
-		return &m_inventoryInterface;
-	}
+		static GameManager* Get()
+		{
+			if (!pInstance)
+			{
+				pInstance = new GameManager();
+			}
+			return pInstance;
+		}
 
-	NavigationInterface* GetNavigationInterface()
-	{
-		return &m_navigationInterface;
-	}
+		InventoryInterface* GetInventoryInterface()
+		{
+			return &m_inventoryInterface;
+		}
 
-	void Process();
-};
+		NavigationInterface* GetNavigationInterface()
+		{
+			return &m_navigationInterface;
+		}
+
+		void Process();
+	};
+}

@@ -1,7 +1,11 @@
 #pragma once
-class Item
+
+namespace eh
 {
-public:
-	Item();
-	~Item();
-};
+	class Item
+	{
+	public:
+		Item();
+		~Item();
+	};
+}

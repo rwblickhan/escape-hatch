@@ -5,56 +5,51 @@
 #include <string>
 #include <map>
 
-using namespace types;
-
-static std::map<Screen, std::string> ScreenToPathMap = {
-    {Screen_Loading, "loading.bmp"}
-};
-
-//namespace for ui-related code
-namespace ui
+namespace eh
 {
+    static std::map<Screen, std::string> ScreenToPathMap = {
+        {Screen::Loading, "loading.bmp"}
+    };
 
-//class that manages UI
-class UiManager
-{
-public:
+    //class that manages UI
+    class UiManager
+    {
+    public:
 
-    //get singleton
-    static UiManager* Get()
-	{
-		if (!pInstance)
-		{
-			pInstance = new UiManager();
-		}
-		return pInstance;
-	}
+        //get singleton
+        static UiManager* Get()
+    	{
+    		if (!pInstance)
+    		{
+    			pInstance = new UiManager();
+    		}
+    		return pInstance;
+    	}
 
-    ~UiManager();
+        ~UiManager();
 
-    //initialize UI manager
-    Error Init(Screen initScreen);
+        //initialize UI manager
+        Error Init(Screen initScreen);
 
-    //deinitialize UI manager
-    Error Deinit();
+        //deinitialize UI manager
+        Error Deinit();
 
-    Error CallbackDisplayImg(std::string imgPath);
+        Error CallbackDisplayImg(std::string imgPath);
 
-private:
+    private:
 
-    Error DisplayImg(std::string imgPath);
+        Error DisplayImg(std::string imgPath);
 
-    std::string GetPath(Screen screen);
+        std::string GetPath(Screen screen);
 
-    //private constructor due to singleton
-    UiManager();
+        //private constructor due to singleton
+        UiManager();
 
-    UiState uiState;
-	static UiManager* pInstance;
+        UiState uiState;
+    	static UiManager* pInstance;
 
-    SDL_Window* m_pWin;
-    SDL_Renderer* m_pRen;
-    SDL_Texture* m_pTempTex;
-};
-
+        SDL_Window* m_pWin;
+        SDL_Renderer* m_pRen;
+        SDL_Texture* m_pTempTex;
+    };
 }
