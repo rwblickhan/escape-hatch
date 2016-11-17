@@ -8,16 +8,16 @@
 
 using namespace eh;
 
-UiManager* UiManager::pInstance = nullptr;
-UiState uiState = UiState::Invalid;
-GameManager* GameManager::pInstance = nullptr;
 GameState gameState = GameState::Invalid;
+UiState uiState = UiState::Invalid;
+std::unique_ptr<GameManager> GameManager::pInstance = std::unique_ptr<GameManager>(nullptr);
+std::unique_ptr<UiManager> UiManager::pInstance = std::unique_ptr<UiManager>(nullptr);
 
 int main()
 {
-    UiManager* pUiManager = UiManager::Get();
-    pUiManager->Init(Screen::Loading);
+    std::unique_ptr<GameManager> pGameManager = GameManager::Get();
+    pGameManager->Init();
     std::this_thread::sleep_for(std::chrono::seconds(5));
-    pUiManager->Deinit();
+
 	return -1;
 }

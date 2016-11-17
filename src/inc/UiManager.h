@@ -11,19 +11,37 @@ namespace eh
         {Screen::Loading, "loading.bmp"}
     };
 
+
+
     //class that manages UI
     class UiManager
     {
+    private:
+        static std::unique_ptr<UiManager> pInstance;
+
+        Error DisplayImg(std::string imgPath);
+
+        std::string GetPath(Screen screen);
+
+        //private constructor due to singleton
+        UiManager();
+
+        UiState uiState;
+
+        SDL_Window* m_pWin;
+        SDL_Renderer* m_pRen;
+        SDL_Texture* m_pTempTex;
+
     public:
 
         //get singleton
-        static UiManager* Get()
+        static std::unique_ptr<UiManager> Get()
     	{
     		if (!pInstance)
     		{
-    			pInstance = new UiManager();
+    			pInstance = std::unique_ptr<UiManager>(new UiManager());
     		}
-    		return pInstance;
+    		return std::move(pInstance);
     	}
 
         ~UiManager();
@@ -34,22 +52,6 @@ namespace eh
         //deinitialize UI manager
         Error Deinit();
 
-        Error CallbackDisplayImg(std::string imgPath);
-
-    private:
-
-        Error DisplayImg(std::string imgPath);
-
-        std::string GetPath(Screen screen);
-
-        //private constructor due to singleton
-        UiManager();
-
-        UiState uiState;
-    	static UiManager* pInstance;
-
-        SDL_Window* m_pWin;
-        SDL_Renderer* m_pRen;
-        SDL_Texture* m_pTempTex;
+        Error Render(std::string imgPath);
     };
 }

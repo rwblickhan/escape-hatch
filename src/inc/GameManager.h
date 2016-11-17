@@ -1,10 +1,10 @@
 #pragma once
-#include <thread>
-#include <mutex>
+
 #include <InventoryInterface.h>
 #include <NavigationInterface.h>
 #include <InputHandler.h>
 #include <Types.h>
+#include <UiManager.h>
 
 namespace eh
 {
@@ -13,31 +13,32 @@ namespace eh
 		// GameManger Singleton
 
 		static GameState gameState;
-		static GameManager* pInstance;
+		static std::unique_ptr<GameManager> pInstance;
 
-		std::mutex m_mutex;
+		std::unique_ptr<UiManager> m_pUiManager;
 		InventoryInterface m_inventoryInterface;
 		NavigationInterface m_navigationInterface;
 		InputHandler m_inputHandler;
 
 		GameManager() {	Clear(); }
-		~GameManager() { Clear(); }
 
 	public:
+
+		Error Init();
+
 		void Clear()
 		{
 			m_inventoryInterface.Init();
 			m_navigationInterface.Init();
-
 		}
 
-		static GameManager* Get()
+		static std::unique_ptr<GameManager> Get()
 		{
 			if (!pInstance)
 			{
-				pInstance = new GameManager();
+				pInstance = std::unique_ptr<GameManager>(new GameManager());
 			}
-			return pInstance;
+			return std::move(pInstance);
 		}
 
 		InventoryInterface* GetInventoryInterface()
@@ -50,6 +51,6 @@ namespace eh
 			return &m_navigationInterface;
 		}
 
-		void Process();
+        ~GameManager() { Clear(); }
 	};
 }

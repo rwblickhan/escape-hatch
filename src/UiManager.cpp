@@ -69,11 +69,6 @@ Error UiManager::Deinit()
     return Error::Success;
 }
 
-Error CallbackDisplayImg(std::string imgPath)
-{
-    return Error::Not_Implemented;
-}
-
 std::string UiManager::GetPath(Screen screen)
 {
     std::string imgPath = SDL_GetBasePath();
