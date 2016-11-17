@@ -11,7 +11,7 @@
 using namespace eh;
 
 UiManager::UiManager()
-    : uiState(UiState::Invalid)
+    : m_uiState(UiState::Invalid)
     , m_pWin(nullptr)
     , m_pRen(nullptr)
     , m_pTempTex(nullptr)
@@ -24,7 +24,7 @@ UiManager::~UiManager()
 
 Error UiManager::Init(Screen initScreen)
 {
-    uiState = UiState::Initializing;
+    m_uiState = UiState::Initializing;
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
@@ -46,13 +46,13 @@ Error UiManager::Init(Screen initScreen)
     }
 
     DisplayImg(GetPath(initScreen));
-    uiState = UiState::Running;
+    m_uiState = UiState::Running;
     return Error::Success;
 }
 
 Error UiManager::Deinit()
 {
-    uiState = UiState::Closing;
+    m_uiState = UiState::Closing;
     if (m_pTempTex)
     {
         SDL_DestroyTexture(m_pTempTex);
@@ -96,5 +96,12 @@ Error UiManager::DisplayImg(std::string imgPath)
     SDL_RenderClear(m_pRen);
     SDL_RenderCopy(m_pRen, m_pTempTex, NULL, NULL);
     SDL_RenderPresent(m_pRen);
+    return Error::Success;
+}
+
+Error UiManager::Render(Screen screen)
+{
+    DisplayImg(GetPath(screen));
+    m_uiState = UiState::Running;
     return Error::Success;
 }

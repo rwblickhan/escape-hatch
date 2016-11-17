@@ -26,7 +26,7 @@ namespace eh
         //private constructor due to singleton
         UiManager();
 
-        UiState uiState;
+        UiState m_uiState;
 
         SDL_Window* m_pWin;
         SDL_Renderer* m_pRen;
@@ -52,6 +52,6 @@ namespace eh
         //deinitialize UI manager
         Error Deinit();
 
-        Error Render(std::string imgPath);
+        Error Render(Screen screen);
     };
 }

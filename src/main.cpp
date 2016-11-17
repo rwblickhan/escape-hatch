@@ -17,6 +17,7 @@ int main()
 {
     std::unique_ptr<GameManager> pGameManager = GameManager::Get();
     pGameManager->Init();
+    pGameManager->GameLoop();
     std::this_thread::sleep_for(std::chrono::seconds(5));
 
 	return -1;

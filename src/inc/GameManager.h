@@ -26,6 +26,8 @@ namespace eh
 
 		Error Init();
 
+        void GameLoop();
+
 		void Clear()
 		{
 			m_inventoryInterface.Init();
